@@ -1,11 +1,15 @@
 <template>
   <div class="add">
-    添加
+    <v-header>添加</v-header>
   </div>
 </template>
 <script>
+import VHeader from '@/base/VHeader.vue'
 export default {
-  name: 'add'
+  name: 'add',
+  components: {
+    VHeader
+  }
 }
 </script>
 <style lang="less" scoped>

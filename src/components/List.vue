@@ -1,11 +1,15 @@
 <template>
   <div class="list">
-    列表页
+    <v-header>列表</v-header>
   </div>
 </template>
 <script>
+import VHeader from '@/base/VHeader.vue'
 export default {
-  name: 'list'
+  name: 'list',
+  components: {
+    VHeader
+  }
 }
 </script>
 <style lang="less" scoped>

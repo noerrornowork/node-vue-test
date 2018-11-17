@@ -18,4 +18,11 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 项目目录架构
+  1. src源码目录:
+    --api: 所有接口的
+    --assets: 
+    --base:
+    --components:
+    --router:
+    
