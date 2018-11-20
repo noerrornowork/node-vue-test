@@ -4,6 +4,16 @@ const url = require('url')
 
 let sliders = require('./slider.js')
 
+function read (callback) {
+  fs.readFile('./mock/book.json', 'utf8', function(err, data){
+    if(err || data.length === 0) return callback(err)
+    callback(JSON.parse(data))
+  })
+}
+// read(function(books){
+//   console.log(books)
+// })
+
 http.createServer((req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
@@ -13,6 +23,13 @@ http.createServer((req, res) => {
   let {pathname, query} = url.parse(req.url)
   if(pathname === '/sliders') {
     return res.end(JSON.stringify(sliders))
+  }
+  if (pathname === '/hot') {
+    read(function(books){
+      let hot = books.reverse().slice(0, 6)
+      res.end(JSON.stringify(hot))
+    })
+    return
   }
 }).listen(3000)
 

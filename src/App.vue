@@ -15,7 +15,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+#app {
+  overflow: auto;
+  height: auto;
+  z-index: 10;
+}
 * {
   margin: 0;
   padding: 0;
@@ -35,4 +40,16 @@ a {
 input, button {
   appearance: none;
 }
+.swiper-container {
+    height: 200px;
+    .swiper-slide {
+      width: 100%;
+      height: 100%;
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 </style>

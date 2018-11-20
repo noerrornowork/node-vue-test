@@ -4,11 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import axios from 'axios'
 import Swiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 Vue.use(Swiper)
 
 Vue.config.productionTip = false
+Vue.prototype.$axios = axios
 
 /* eslint-disable no-new */
 new Vue({
