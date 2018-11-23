@@ -1,6 +1,6 @@
 <template>
   <div class="v-header">
-    <div class="left"></div>
+    <div class="left" @click="back"></div>
     <div class="right">
       <slot></slot>
     </div>
@@ -8,7 +8,12 @@
 </template>
 <script>
 export default {
-  name: 'v-header'
+  name: 'v-header',
+  methods: {
+    back () {
+      this.$router.go(-1)
+    }
+  }
 }
 </script>
 <style lang="less" scoped>
@@ -18,7 +23,7 @@ export default {
   line-height: 40px;
   display: flex;
   font-weight: bold;
-  box-shadow: 0px 0px 3px #cfcfcf;
+  border-bottom: 1px solid #cfcfcf;
   .left {
     width: 40px;
     position: relative;

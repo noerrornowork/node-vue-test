@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import * as custom from '@/assets/js/filter.js'
 import axios from 'axios'
 import Swiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
@@ -11,6 +12,11 @@ Vue.use(Swiper)
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
+
+// 全局注册过滤器
+Object.keys(custom).forEach(key => {
+  Vue.filter(key, custom[key])
+})
 
 /* eslint-disable no-new */
 new Vue({

@@ -2,7 +2,7 @@
   <div class="home">
     <v-header>首页</v-header>
     <swiper :swiperSlides="slidersData"></swiper>
-    <div class="container">
+    <div class="content">
       <h3>热门图书</h3>
       <ul>
         <li v-for="(hot, index) in hotBooks" :key="index">
@@ -45,31 +45,43 @@ export default {
 </script>
 <style lang="less" scoped>
 .home {
-  overflow: auto;
-  .container {
-    width: 90%;
-    margin: 0 auto;
-    overflow: hidden;
+  .swiper-container {
+    height: 200px;
+    .swiper-slide {
+      width: 100%;
+      img {
+        display: block;
+      }
+    }
+  }
+  .content {
+    margin-top: 200px;
     h3 {
-      color: #999999;
+      height: 30px;
+      line-height: 30px;
       text-align: center;
+      font-size: 16px;
+      border-bottom: 1px solid red;
     }
     ul {
+      padding: 10px;
       display: flex;
       flex-wrap: wrap;
       li {
-        box-shadow: 0px 0px 3px #cfcfcf;
-        width: 30%;
-        margin: 15px 5px;
+        width: 33.333333%;
         img {
-          width: 100%;
+          width: 100px;
+          height: 150px;
         }
         b {
-          font-size: 12px;
-          width: 100px;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          width: 20px;
+          height: 10px;
           white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          font-size: 14px;
+          text-align: center;
+          color: green;
         }
       }
     }

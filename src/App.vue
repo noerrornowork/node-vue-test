@@ -19,7 +19,7 @@ export default {
 #app {
   overflow: auto;
   height: auto;
-  z-index: 10;
+  z-index: 1;
 }
 * {
   margin: 0;
@@ -40,16 +40,12 @@ a {
 input, button {
   appearance: none;
 }
-.swiper-container {
-    height: 200px;
-    .swiper-slide {
-      width: 100%;
-      height: 100%;
-      img {
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
+.content {
+  width: 100%;
+  overflow: auto;
+  position: fixed;
+  left: 0;
+  top: 40px;
+  bottom: 50px;
+}
 </style>
