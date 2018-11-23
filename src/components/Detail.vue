@@ -59,6 +59,9 @@ export default {
 </script>
 <style lang="less" scoped>
   .detail {
+    position: absolute;
+    left: 0;
+    top: 0;
     .content {
       ul {
         margin-top: 2px;
