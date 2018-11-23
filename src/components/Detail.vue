@@ -19,21 +19,20 @@
       </ul>
       <!-- 按钮区 -->
       <div class="button">
-        <button>确认</button>
+        <button @click="putBook">确认</button>
       </div>
     </div>
   </div>
 </template>
 <script>
 import VHeader from '@/base/VHeader.vue'
-import { getBookById } from '@/api'
+import { getBookById, addBook } from '@/api'
 export default {
   name: 'detail',
   components: {
     VHeader
   },
   created () {
-    console.log(this.$route.params.bookId)
     this.getBook(this.bookId)
   },
   data () {
@@ -47,7 +46,13 @@ export default {
     async getBook (id) {
       // 数组解构
       [this.detail] = await getBookById(id)
-      console.log(this.detail)
+    },
+    async putBook () {
+      let book = {}
+      book.bookName = this.detail.bookName
+      book.bookInfo = this.detail.bookInfo
+      book.bookPrice = this.detail.bookPrice
+      await addBook(book)
     }
   }
 }

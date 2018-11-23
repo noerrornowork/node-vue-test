@@ -46,3 +46,6 @@ npm run build --report
       Vue.filter(key, custom[key])
     })
   ```
+## axios请求中,默认格式是'application/x-www-form-urlencoded',表单数据
+  1. 如果后台是application/json格式接收或者发送数据,则前端需要qs将post提交的数据序列化一下
+## 需求: 缺乏一个弹框组件

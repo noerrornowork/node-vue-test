@@ -26,5 +26,8 @@ export let getBookById = (id) => {
 }
 // 新增一本图书
 export let addBook = (book) => {
-  return axios.put(`/book?book=${book}`)
+  // console.log(book)
+  return axios.put('/book', {
+    book: book
+  })
 }

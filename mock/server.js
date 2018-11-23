@@ -51,6 +51,25 @@ http.createServer((req, res) => {
       case 'POST':
         break
       case 'PUT':
+      // 请求体中, 传过来的参数
+        let data = ''
+        req.on('data', (chunk) => {
+          data += chunk
+        })
+        req.on('end', () => {
+          data = JSON.parse(data)
+        })
+        read((books) => {
+          // 将新添的数据自增1
+          if (books && books.length > 0) {
+            data.bookId = books.length + 1
+            console.log(data.bookId)
+          }
+          books.push(data)
+          write(books, () => {
+            res.end(JSON.stringify())
+          })
+        })
         break
       case 'DELETE':
       read((books) => {
