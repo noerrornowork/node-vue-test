@@ -82,7 +82,7 @@ export default {
     let disY = 0
     scroll.addEventListener('touchstart', (e) => {
       // 滚动条在顶端 容器的距顶部的偏移量为offsetTop时, 不能上拉
-      if (scroll.scrollTop !== 0 || scroll.offsetTop !== offsetTop) return
+      // if (scroll.scrollTop !== 0 || scroll.offsetTop !== offsetTop) return
       let start = e.touches[0].pageY // 开始位置
       let move = scroll.addEventListener('touchmove', (e) => {
         let current = e.touches[0].pageY // 移动后, 停下来的点的位置
@@ -140,7 +140,7 @@ export default {
         display: flex;
         border-bottom: 1px solid #999999;
         img {
-          width: 160px;
+          width: 130px;
           height: 150px;
         }
         div {
