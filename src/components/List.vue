@@ -6,7 +6,7 @@
       <template v-else>
         <ul>
           <router-link :to="{name:'detail', params: {id: book.bookId}}" v-for="(book, index) in allBooks" :key="index" tag="li">
-            <img :src="book.bookCover" alt="">
+            <img :src="book.bookCover" alt="xxx">
             <div>
               <h4>{{ book.bookName }}</h4>
               <p>{{ book.bookInfo }}</p>
@@ -21,7 +21,7 @@
 </template>
 <script>
 import VHeader from '@/base/VHeader.vue'
-import { getAllBooks, removeBook } from '@/api'
+import { pagination, removeBook } from '@/api'
 import Loading from '@/base/Loading.vue'
 export default {
   name: 'list',
@@ -35,13 +35,22 @@ export default {
   data () {
     return {
       allBooks: [],
+      offset: 0, // 偏移量
+      hasMore: true, // 是否有更多
       loading: true
     }
   },
   methods: {
     async getData () {
-      this.allBooks = await getAllBooks()
-      this.loading = false
+      // this.allBooks = await getAllBooks()
+      if (this.hasMore) { // 有更多的时候获取数据
+        let {hasMore, books} = await pagination(this.offset)
+        // this.allBooks = this.allBooks.concat(books)
+        this.allBooks = [...this.allBooks, ...books]
+        this.hasMore = hasMore
+        this.offset = this.allBooks.length
+        this.loading = false
+      }
     },
     async remove (id) {
       await removeBook(id)
@@ -57,9 +66,9 @@ export default {
       li {
         padding: 10px;
         display: flex;
-        border-bottom: 1px solid #f1f1f1;
+        border-bottom: 1px solid #999999;
         img {
-          width: 130px;
+          width: 160px;
           height: 150px;
         }
         div {

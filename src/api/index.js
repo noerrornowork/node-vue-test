@@ -40,3 +40,7 @@ export let addBook = (data) => {
 export let getAll = () => {
   return axios.all([getSliders(), getHotBooks()])
 }
+// 根据偏移量, 返回对应的数据 5
+export let pagination = (offset) => {
+  return axios.get(`/page?offset=${offset}`)
+}
