@@ -17,17 +17,18 @@ export default {
 
 <style lang="less">
 #app {
-  overflow: auto;
-  height: auto;
   z-index: 1;
 }
+// 公共重置样式START
 * {
   margin: 0;
   padding: 0;
 }
-ul, li {
+ul {
   margin: 0;
   padding: 0;
+}
+li {
   list-style: none;
 }
 body, p {
@@ -40,11 +41,12 @@ a {
 input, button {
   appearance: none;
 }
+// 公共重置样式END
 .content {
   width: 100%;
   overflow: auto;
+
   position: fixed;
-  left: 0;
   top: 40px;
   bottom: 50px;
 }

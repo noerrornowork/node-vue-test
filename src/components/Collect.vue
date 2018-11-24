@@ -1,6 +1,6 @@
 <template>
   <div class="collect">
-    <v-header>收藏</v-header>
+    <v-header :back="true">收藏</v-header>
   </div>
 </template>
 <script>

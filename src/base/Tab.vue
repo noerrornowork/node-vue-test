@@ -1,20 +1,20 @@
 <template>
   <div class="tab">
     <router-link to="/home">
-    <span>首页</span>
-    <i class="iconfont icon-"></i>
+      <i class="iconfont icon-home"></i>
+      <span>首页</span>
     </router-link>
     <router-link to="/list">
-    <span>列表</span>
-    <i class="iconfont icon-"></i>
+      <i class="iconfont icon-list"></i>
+      <span>列表</span>
     </router-link>
     <router-link to="/collect">
-    <span>收藏</span>
-    <i class="iconfont icon-"></i>
+      <i class="iconfont icon-collect"></i>
+      <span>收藏</span>
     </router-link>
     <router-link to="/add">
-    <span>添加</span>
-    <i class="iconfont icon-"></i>
+      <i class="iconfont icon-add"></i>
+      <span>添加</span>
     </router-link>
   </div>
 </template>
@@ -25,23 +25,24 @@ export default {
 </script>
 <style lang="less" scoped>
 .tab {
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  background-color: #259bec;
-
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
+
+  width: 100%;
+  height: 50px;
 
   display: flex;
   a {
     flex: 1;
-    color: #FFFFFF ;
-    font-size: 16px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: yellowgreen ;
     &.router-link-active {
-      color: #000;
+      color: red;
     }
   }
 }

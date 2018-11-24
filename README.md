@@ -49,3 +49,12 @@ npm run build --report
 ## axios请求中,默认格式是'application/x-www-form-urlencoded',表单数据
   1. 如果后台是application/json格式接收或者发送数据,则前端需要qs将post提交的数据序列化一下
 ## 需求: 缺乏一个弹框组件,将前端温馨提示
+## 生成ali图标
+  1. http://at.alicdn.com/t/font_923480_4hn1gvc2mxy.css
+  2. 到ali图库去找自己喜欢的字体图标,添加到自己的项目
+  3. 点生成代码,----则生成css样式代码
+## 自定义tab组件
+  1. 定义
+  2. 注册
+  3. 使用
+## 写重置样式,去掉一些HTML元素的默认样式

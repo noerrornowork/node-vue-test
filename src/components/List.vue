@@ -1,9 +1,9 @@
 <template>
   <div class="list">
-    <v-header>列表</v-header>
+    <v-header :back="true">列表</v-header>
     <div class="content">
       <ul>
-        <router-link :to="'/detail/' + book.bookId" v-for="(book, index) in allBooks" :key="index" tag="li">
+        <router-link :to="{name:'detail', params: {id: book.bookId}}" v-for="(book, index) in allBooks" :key="index" tag="li">
           <img :src="book.bookCover" alt="">
           <div>
             <h4>{{ book.bookName }}</h4>
@@ -35,7 +35,6 @@ export default {
   methods: {
     async getData () {
       this.allBooks = await getAllBooks()
-      console.log(this.allBooks)
     },
     async remove (id) {
       await removeBook(id)
@@ -57,12 +56,17 @@ export default {
           height: 150px;
         }
         div {
+          padding-left: 5px;
           h4 {
             font-size: 20px;
             line-height: 35px;
           }
           p {
             color: #2a2a2a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 14px;
           }
           b {
             color: red;

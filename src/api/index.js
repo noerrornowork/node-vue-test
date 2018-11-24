@@ -24,10 +24,15 @@ export let removeBook = (id) => {
 export let getBookById = (id) => {
   return axios.get(`/book?id=${id}`)
 }
-// 新增一本图书
-export let addBook = (book) => {
-  // console.log(book)
-  return axios.put('/book', {
-    book: book
-  })
+/**
+ * 修改一本图书
+ * @param {*} id 图书编号
+ * @param {*} data
+ * @returns {AxiosPromise<T>}
+ */
+export let updateBook = (id, data) => {
+  return axios.put(`/book?id=${id}`, data)
+}
+export let addBook = (data) => {
+  return axios.post('/book', data)
 }

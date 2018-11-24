@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <v-header>首页</v-header>
-    <swiper :swiperSlides="slidersData"></swiper>
     <div class="content">
+      <swiper :swiperSlides="slidersData"></swiper>
       <h3>热门图书</h3>
       <ul>
         <li v-for="(hot, index) in hotBooks" :key="index">
@@ -45,7 +45,8 @@ export default {
 </script>
 <style lang="less" scoped>
 .home {
-  .swiper-container {
+  .content {
+    .swiper-container {
     height: 200px;
     .swiper-slide {
       width: 100%;
@@ -54,8 +55,6 @@ export default {
       }
     }
   }
-  .content {
-    margin-top: 200px;
     h3 {
       height: 30px;
       line-height: 30px;

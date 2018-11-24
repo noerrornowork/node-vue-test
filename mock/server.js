@@ -36,40 +36,57 @@ http.createServer((req, res) => {
     let id = parseInt(query.id)
     switch (req.method) {
       case 'GET':
-      if (id) {
+      if (!isNaN(id)) {
         read((books) => {
-          book = books.filter(item => item.bookId === id)
-          console.log(book)
+          let book = books.find(item => item.bookId === id)
+          if (!book) book = {}
           res.end(JSON.stringify(book))
         })
       }else {
         read((books) => {
+          res.setHeader("Content-Type", "application/json;charset=utf-8");
           res.end(JSON.stringify(books.reverse()))
         })
       }
         break
       case 'POST':
-        break
-      case 'PUT':
-      // 请求体中, 传过来的参数
         let data = ''
         req.on('data', (chunk) => {
           data += chunk
         })
         req.on('end', () => {
-          data = JSON.parse(data)
+          let book = JSON.parse(data)
+          read((books) => {
+            book.bookId = books.length ? books[books.length - 1].bookId + 1 : 1
+            books.push(book)
+            write(books, () => {
+              res.end(JSON.stringify(book))
+            })
+          }) 
         })
-        read((books) => {
-          // 将新添的数据自增1
-          if (books && books.length > 0) {
-            data.bookId = books.length + 1
-            console.log(data.bookId)
-          }
-          books.push(data)
-          write(books, () => {
-            res.end(JSON.stringify())
+        break
+      case 'PUT':
+      if (id) {
+        // 请求体中, 传过来的参数
+        let data = ''
+        req.on('data', (chunk) => {
+          data += chunk
+        })
+        req.on('end', () => {
+          let book = JSON.parse(data)
+          read((books) => {
+            books = books.map(item => {
+              if (item.bookId === id) { //找到id相同的哪一本书
+                return book
+              }
+              return item
+            })
+            write(books, () => {
+              res.end(JSON.stringify(book))
+            })
           })
         })
+      }
         break
       case 'DELETE':
       read((books) => {

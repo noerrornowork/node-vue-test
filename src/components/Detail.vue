@@ -1,58 +1,72 @@
 <template>
   <div class="detail">
-    <v-header>详情页</v-header>
+    <v-header :back="true">详情页</v-header>
     <div class="content">
       <ul>
         <li>
           <label for="book-name">书籍名称:</label>
-          <input type="text" v-model="detail.bookName">
+          <input type="text" v-model="book.bookName">
         </li>
         <li>
           <label for="book-info">书籍信息:</label>
-          <input type="text" v-model="detail.bookInfo">
+          <input type="text" v-model="book.bookInfo">
         </li>
         <li>
           <label for="book-price">书籍价格:</label>
-          <p>{{ detail.bookPrice | priceFilter }}</p>
+          <p>{{ book.bookPrice | priceFilter }}</p>
           <!-- <input type="text" v-model="detail.bookPrice" v-show="detail.bookPrice"> -->
         </li>
       </ul>
-      <!-- 按钮区 -->
       <div class="button">
-        <button @click="putBook">确认</button>
+        <button @click="update">确认</button>
       </div>
     </div>
   </div>
 </template>
 <script>
 import VHeader from '@/base/VHeader.vue'
-import { getBookById, addBook } from '@/api'
+import { getBookById, updateBook } from '@/api'
 export default {
   name: 'detail',
   components: {
     VHeader
   },
   created () {
-    this.getBook(this.bookId)
+    this.getBook()
+  },
+  computed: {
+    bId () {
+      return this.$route.params.id
+    }
+  },
+  watch: {
+    $route () {
+      // 路由发生改变,重新发送请求获取数据
+      this.getBook()
+      // 如果是空对象 需要跳转回到列表页
+      if (Object.keys(this.book).length > 0) {
+        this.$router.push({
+          name: 'list'
+        })
+      }
+    }
   },
   data () {
     return {
       msg: '详情页',
-      bookId: this.$route.params.bookId, // 路由参数
-      detail: {}
+      book: {}
     }
   },
   methods: {
-    async getBook (id) {
-      // 数组解构
-      [this.detail] = await getBookById(id)
+    async getBook () {
+      this.book = await getBookById(this.bId)
     },
-    async putBook () {
-      let book = {}
-      book.bookName = this.detail.bookName
-      book.bookInfo = this.detail.bookInfo
-      book.bookPrice = this.detail.bookPrice
-      await addBook(book)
+    async update () {
+      await updateBook(this.bId, this.book)
+      // 修改完成后,跳转页面
+      this.$router.push({
+        name: 'list'
+      })
     }
   }
 }
@@ -62,9 +76,12 @@ export default {
     position: absolute;
     left: 0;
     top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background-color: #ffffff;
     .content {
       ul {
-        margin-top: 2px;
         li {
           padding: 0 10px;
           height: 60px;
@@ -96,7 +113,11 @@ export default {
         }
       }
       .button {
-        margin-top: 200px;
+        position: fixed;
+        left: 0;
+        bottom: 20px;
+
+        width: 100%;
         height: 40px;
         display: flex;
         align-items: center;
