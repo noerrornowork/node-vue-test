@@ -1,12 +1,12 @@
 <template>
   <div class="list">
     <v-header :back="true">列表</v-header>
-    <div class="content">
+    <div class="content" ref="scroll" @scroll="scrollLoad">
       <loading v-if="loading"></loading>
       <template v-else>
         <ul>
           <router-link :to="{name:'detail', params: {id: book.bookId}}" v-for="(book, index) in allBooks" :key="index" tag="li">
-            <img :src="book.bookCover" alt="xxx">
+            <img :src="book.bookCover" alt="xxxkkkkkkkk">
             <div>
               <h4>{{ book.bookName }}</h4>
               <p>{{ book.bookInfo }}</p>
@@ -16,6 +16,7 @@
           </router-link>
         </ul>
       </template>
+      <div class="more" @click="loadMore">加载更多</div>
     </div>
   </div>
 </template>
@@ -37,17 +38,35 @@ export default {
       allBooks: [],
       offset: 0, // 偏移量
       hasMore: true, // 是否有更多
-      loading: true
+      loading: true,
+      isLoading: false
     }
   },
   methods: {
+    scrollLoad () { // 滚动加载更多
+      clearTimeout(this.timer) // 函数防抖
+      this.timer = setTimeout(() => { // 函数节流
+        let {scrollTop, clientHeight, scrollHeight} = this.$refs.scroll
+        if (scrollTop + clientHeight + 40 > scrollHeight) {
+          this.getData()
+        }
+      }, 13)
+    },
+    loadMore () { // 点击加载更多
+      if (!this.hasMore) {
+        this.$vux.toast.show('我是有底线的')
+      }
+      this.getData()
+    },
     async getData () {
       // this.allBooks = await getAllBooks()
-      if (this.hasMore) { // 有更多的时候获取数据
+      if (this.hasMore && !this.isLoading) { // 有更多的时候获取数据
+        this.isLoading = true
         let {hasMore, books} = await pagination(this.offset)
         // this.allBooks = this.allBooks.concat(books)
         this.allBooks = [...this.allBooks, ...books]
         this.hasMore = hasMore
+        this.isLoading = false
         this.offset = this.allBooks.length
         this.loading = false
       }
@@ -62,6 +81,13 @@ export default {
 <style lang="less" scoped>
 .list {
   .content {
+    .more {
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background-color: #888888;
+      color: #ffffff;
+    }
     ul {
       li {
         padding: 10px;
