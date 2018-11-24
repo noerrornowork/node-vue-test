@@ -53,6 +53,8 @@ npm run build --report
   1. http://at.alicdn.com/t/font_923480_4hn1gvc2mxy.css
   2. 到ali图库去找自己喜欢的字体图标,添加到自己的项目
   3. 点生成代码,----则生成css样式代码
+  4. 将改样式引入index.html页面
+  5. 注意: 要在有网络的情况下
 ## 自定义tab组件
   1. 定义
   2. 注册
