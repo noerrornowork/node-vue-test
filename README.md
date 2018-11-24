@@ -21,10 +21,13 @@ npm run build --report
 ## 项目目录架构
   1. src源码目录:
     --api: 所有接口: ajax向后端请求数据
-    --assets: 
-    --base:
-    --components:
-    --router:
+    --assets: 自己写的js功能方法
+    --base: 基础组件(公用组件)
+    --components: 页面级组件
+    --router: 路由文件
+    --APP.vue: 根组件, 一般作为容器,容纳其他路由映射的页面级组件
+    --main.js: js主程序入口文件
+    --store: vuex状态管理文件
 ## 功能
   - 先写服务端, 确保数据能正常返回
   - 增加api方法, 实现调取数据的功能
@@ -48,7 +51,7 @@ npm run build --report
   ```
 ## axios请求中,默认格式是'application/x-www-form-urlencoded',表单数据
   1. 如果后台是application/json格式接收或者发送数据,则前端需要qs将post提交的数据序列化一下
-## 需求: 缺乏一个弹框组件,将前端温馨提示
+## 需求: 缺乏一个弹框组件,前端温馨提示
 ## 生成ali图标
   1. http://at.alicdn.com/t/font_923480_4hn1gvc2mxy.css
   2. 到ali图库去找自己喜欢的字体图标,添加到自己的项目
@@ -62,7 +65,11 @@ npm run build --report
 ## 写重置样式,去掉一些HTML元素的默认样式
 ## 实现页面级缓存
 ## 实现路由动画
-## 加载更多
+## 点击加载更多
   1. 默认每次给5条
   2. offset=5, 表示从第5条开始再给5条信息
 ## coding split: 代码分割
+## 滚动加载
+## 下拉刷新
+## 实现图片懒加载
+  1. 利用插件 vue-lazyload
