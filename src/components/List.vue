@@ -75,6 +75,52 @@ export default {
       await removeBook(id)
       this.allBooks = this.allBooks.filter(item => item.bookId !== id)
     }
+  },
+  mounted () {
+    let scroll = this.$refs.scroll
+    let offsetTop = scroll.offsetTop
+    let disY = 0
+    scroll.addEventListener('touchstart', (e) => {
+      // 滚动条在顶端 容器的距顶部的偏移量为offsetTop时, 不能上拉
+      if (scroll.scrollTop !== 0 || scroll.offsetTop !== offsetTop) return
+      let start = e.touches[0].pageY // 开始位置
+      let move = scroll.addEventListener('touchmove', (e) => {
+        let current = e.touches[0].pageY // 移动后, 停下来的点的位置
+        disY = current - start // 滑动的距离
+        if (disY > 0) {
+          if (disY <= 40) {
+            scroll.style.top = disY + offsetTop + 'px'
+          } else {
+            disY = 40
+            scroll.style.top = offsetTop + 40 + 'px'
+          }
+        } else {
+          scroll.removeEventListener('touchmove', move)
+          scroll.removeEventListener('touchend', end)
+        }
+      })
+      let end = (e) => {
+        clearInterval(this.timer) // 函数防抖
+        this.timer = setInterval(() => {
+          if (disY <= 0) {
+            clearInterval(this.timer)
+            disY = 0
+            scroll.style.top = offsetTop + 'px'
+            scroll.removeEventListener('touchmove', move)
+            scroll.removeEventListener('touchend', end)
+            console.log('获取数据')
+            this.allBooks = [] // 先清空原有数组中的数据
+            this.offset = 0
+            this.getData()
+            return
+          }
+          disY--
+          scroll.style.top = offsetTop + disY + 'px'
+        }, 10)
+      }
+      scroll.addEventListener('touchmove', move)
+      scroll.addEventListener('touchend', end)
+    }, false)
   }
 }
 </script>

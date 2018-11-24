@@ -65,3 +65,4 @@ npm run build --report
 ## 加载更多
   1. 默认每次给5条
   2. offset=5, 表示从第5条开始再给5条信息
+## coding split: 代码分割
