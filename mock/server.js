@@ -28,7 +28,10 @@ http.createServer((req, res) => {
   if (pathname === '/hot') {
     read(function(books){
       let hot = books.reverse().slice(0, 6)
-      res.end(JSON.stringify(hot))
+      // 模拟加载数据延时
+      setTimeout(() => {
+        res.end(JSON.stringify(hot))
+      }, 500);
     })
     return
   }

@@ -18,7 +18,10 @@ export default new Router({
     {
       path: '/home',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: { // 路由元信息
+        keePAlive: true
+      }
     },
     {
       path: '/list',

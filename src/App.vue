@@ -1,6 +1,17 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <!-- 需要实现页面缓存的 -->
+    <transition name="fadeIn">
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+      </keep-alive>
+    </transition>
+    <!-- 不需要缓存的 -->
+    <transition name="fadeIn">
+      <keep-alive>
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
+      </keep-alive>
+    </transition>
     <tab></tab>
   </div>
 </template>
@@ -49,5 +60,20 @@ input, button {
   position: fixed;
   top: 40px;
   bottom: 50px;
+}
+// 路由动画样式
+.fadeIn-enter {
+  opacity: 0;
+}
+.fadeIn-enter-active {
+  transition: all 0.5s linear;
+  opacity: 1;
+}
+.fadeIn-leave-active {
+  transition: all 0.5s linear;
+  opacity: 1;
+}
+.fadeIn-leave {
+  opacity: 0;
 }
 </style>
