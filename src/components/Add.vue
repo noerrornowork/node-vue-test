@@ -61,12 +61,12 @@ export default {
         return
       }
       // 校验书籍封面: URL
-      let url = /^((ht|f)tps?):\/\/[\w\\-]+(\.[\w\\-]+)+([\w\\-\\.,@?^=%&:\\/~\\+#]*[\w\-\\@?^=%&\\/~\\+#])?$/
-      if (this.book.bookCover && !url.test(this.book.bookCover)) {
-        this.$vux.toast.show('输入url路径必须以http,https,sftp,ftp开头')
-        this.book.bookCover = ''
-        return
-      }
+      // let url = /^((ht|f)tps?):\/\/[\w\\-]+(\.[\w\\-]+)+([\w\\-\\.,@?^=%&:\\/~\\+#]*[\w\-\\@?^=%&\\/~\\+#])?$/
+      // if (this.book.bookCover && !url.test(this.book.bookCover)) {
+      //   this.$vux.toast.show('输入url路径必须以http,https,sftp,ftp开头')
+      //   this.book.bookCover = ''
+      //   return
+      // }
       await addBook(this.book)
       this.$router.push({
         name: 'list'
