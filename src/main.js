@@ -8,7 +8,10 @@ import * as custom from '@/assets/js/filter.js'
 import axios from 'axios'
 import Swiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+import { ToastPlugin, LoadingPlugin } from 'vux'
 Vue.use(Swiper)
+Vue.use(ToastPlugin)
+Vue.use(LoadingPlugin)
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
