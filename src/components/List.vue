@@ -6,7 +6,7 @@
       <template v-else>
         <ul>
           <router-link :to="{name:'detail', params: {id: book.bookId}}" v-for="(book, index) in allBooks" :key="index" tag="li">
-            <img :src="book.bookCover" alt="xxxkkkkkkkk">
+            <img v-lazy="book.bookCover" alt="xxxkkkkkkkk">
             <div>
               <h4>{{ book.bookName }}</h4>
               <p>{{ book.bookInfo }}</p>
@@ -16,7 +16,7 @@
           </router-link>
         </ul>
       </template>
-      <div class="more" @click="loadMore">加载更多</div>
+      <div class="more" @click.stop="loadMore">加载更多</div>
     </div>
   </div>
 </template>
@@ -82,7 +82,7 @@ export default {
     let disY = 0
     scroll.addEventListener('touchstart', (e) => {
       // 滚动条在顶端 容器的距顶部的偏移量为offsetTop时, 不能上拉
-      // if (scroll.scrollTop !== 0 || scroll.offsetTop !== offsetTop) return
+      if (scroll.scrollTop !== 0 || scroll.offsetTop !== offsetTop) return
       let start = e.touches[0].pageY // 开始位置
       let move = scroll.addEventListener('touchmove', (e) => {
         let current = e.touches[0].pageY // 移动后, 停下来的点的位置

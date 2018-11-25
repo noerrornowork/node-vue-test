@@ -9,6 +9,13 @@ import axios from 'axios'
 import Swiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import { ToastPlugin, LoadingPlugin } from 'vux'
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: 'http://img3.imgtn.bdimg.com/it/u=31820628,1906662201&fm=26&gp=0.jpg',
+  loading: 'http://img.lanrentuku.com/img/allimg/1212/5-121204194025.gif',
+  attempt: 1
+})
 Vue.use(Swiper)
 Vue.use(ToastPlugin)
 Vue.use(LoadingPlugin)
