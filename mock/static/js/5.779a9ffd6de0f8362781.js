@@ -1,0 +1,2 @@
+webpackJsonp([5],{"8GO8":function(e,t){},QV70:function(e,t,a){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=a("GAMq"),c=(n.a,{name:"collect",components:{VHeader:n.a}}),r={render:function(){var e=this.$createElement,t=this._self._c||e;return t("div",{staticClass:"collect"},[t("v-header",{attrs:{back:!0}},[this._v("收藏")])],1)},staticRenderFns:[]};var s=a("VU/8")(c,r,!1,function(e){a("8GO8")},"data-v-414010ce",null);t.default=s.exports}});
+//# sourceMappingURL=5.779a9ffd6de0f8362781.js.map
