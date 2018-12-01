@@ -117,22 +117,21 @@ http.createServer((req, res) => {
     return
   }
 
-  // fs.stat('.' + pathname, (err, stats) => {
-  //   if (err) {
-  //     res.statusCode = 404
-  //     res.end('NOT FOUND')
-  //   } else {
-  //     if (stats.isDirectory()) {
-  //       console.log('111111111')
-  //       let p = path.join(__dirname + pathname, './index.html')
-  //       console.log(p)
-  //       fs.createReadStream(p).pipe(res)
-  //     } else {
-  //       console.log('222222222222')
-  //       fs.createReadStream('.' + pathname).pipe(res)
-  //     }
-  //   }
-  // })
+  fs.stat('.' + pathname, (err, stats) => {
+    if (err) {
+      res.statusCode = 404
+      res.end('NOT FOUND')
+    } else {
+      if (stats.isDirectory()) {
+        console.log('111111111111')
+        let p = path.join('.' + pathname, './index.html')
+        fs.createReadStream(p).pipe(res)
+      } else {
+        console.log('222222222222222')
+        fs.createReadStream('.' + pathname).pipe(res)
+      }
+    }
+  })
 }).listen(3000)
 
 console.log('Your application is running at port 3000......')
