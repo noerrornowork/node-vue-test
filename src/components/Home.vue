@@ -38,12 +38,16 @@ export default {
     return {
       slidersData: [],
       hotBooks: [],
-      loading: true
+      loading: true,
+      sliders: []
     }
   },
   methods: {
     // async getSlider () {
-    //   this.slidersData = await getSliders()
+    //   this.sliders = await getSliders()
+    //   this.sliders.forEach((item) => {
+    //     this.slidersData.push(item.url)
+    //   })
     // },
     // async getHot () {
     //   this.hotBooks = await getHotBooks()
@@ -51,7 +55,10 @@ export default {
     async getData () {
       this.loading = true
       let [slidersData, hotBooks] = await getAll()
-      this.slidersData = slidersData
+      this.sliders = slidersData
+      this.sliders.forEach((item) => {
+        this.slidersData.push(item.url)
+      })
       this.hotBooks = hotBooks
       this.loading = false
     }

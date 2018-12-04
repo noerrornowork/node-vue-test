@@ -40,16 +40,16 @@ export default {
     }
   },
   watch: {
-    $route () {
-      // 路由发生改变,重新发送请求获取数据
-      this.getBook()
-      // 如果是空对象 需要跳转回到列表页
-      if (Object.keys(this.book).length > 0) {
-        this.$router.push({
-          name: 'list'
-        })
-      }
-    }
+    // $route () {
+    //   // 路由发生改变,重新发送请求获取数据
+    //   this.getBook()
+    //   // 如果是空对象 需要跳转回到列表页
+    //   if (Object.keys(this.book).length > 0) {
+    //     this.$router.push({
+    //       name: 'list'
+    //     })
+    //   }
+    // }
   },
   data () {
     return {
