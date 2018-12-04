@@ -33,12 +33,6 @@ Object.keys(directives).forEach((key) => {
   Vue.directive(key, directives[key])
 })
 
-// Vue.directive('color', {
-//   inserted: (el) => {
-//     el.style.color = 'red'
-//   }
-// })
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
