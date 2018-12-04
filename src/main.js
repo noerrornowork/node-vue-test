@@ -4,7 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-import * as custom from '@/assets/js/filter.js'
+import * as filters from '@/assets/js/filter.js'
+import * as directives from '@/assets/js/directive.js'
 import axios from 'axios'
 import Swiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
@@ -24,9 +25,19 @@ Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 
 // 全局注册过滤器
-Object.keys(custom).forEach(key => {
-  Vue.filter(key, custom[key])
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
 })
+// 全局注册指令
+Object.keys(directives).forEach((key) => {
+  Vue.directive(key, directives[key])
+})
+
+// Vue.directive('color', {
+//   inserted: (el) => {
+//     el.style.color = 'red'
+//   }
+// })
 
 /* eslint-disable no-new */
 new Vue({

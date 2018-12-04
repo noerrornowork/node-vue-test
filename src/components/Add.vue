@@ -5,11 +5,11 @@
       <ul>
         <li>
           <label for="book-name">书籍名称:</label>
-          <input type="text" v-model="book.bookName" placeholder="请输入书籍名称">
+          <input type="text" v-model="book.bookName" required="required" v-color v-focus placeholder="请输入书籍名称">
         </li>
         <li>
           <label for="book-info">书籍信息:</label>
-          <input type="text" v-model="book.bookInfo" placeholder="请输入书籍信息">
+          <input type="text" v-model="book.bookInfo" maxlength="30" placeholder="请输入书籍信息">
         </li>
         <li>
           <label for="book-price">书籍价格:</label>
@@ -42,6 +42,10 @@ export default {
   methods: {
     async add () {
       // 校验书籍名称
+      // if (!this.book.bookName) {
+      //   this.$vux.toast.show('请输入书籍名称')
+      //   return
+      // }
       if (this.book.bookName && this.book.bookName.length > 15) {
         this.$vux.toast.show('输入名称不能超过15个字符')
         this.book.bookName = ''
@@ -54,12 +58,12 @@ export default {
         return
       }
       // 校验书籍价格
-      let reg = /^\d+$/ // 非负数
-      if (this.book.bookPrice && !reg.test(this.book.bookPrice)) {
-        this.$vux.toast.show('输入价格不能为负或英文或汉字')
-        this.book.bookPrice = ''
-        return
-      }
+      // let reg = /^\d+$/ // 非负数
+      // if (this.book.bookPrice && !reg.test(this.book.bookPrice)) {
+      //   this.$vux.toast.show('输入价格不能为负或英文或汉字')
+      //   this.book.bookPrice = ''
+      //   return
+      // }
       // 校验书籍封面: URL
       // let url = /^((ht|f)tps?):\/\/[\w\\-]+(\.[\w\\-]+)+([\w\\-\\.,@?^=%&:\\/~\\+#]*[\w\-\\@?^=%&\\/~\\+#])?$/
       // if (this.book.bookCover && !url.test(this.book.bookCover)) {
