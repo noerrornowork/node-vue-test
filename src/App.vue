@@ -8,9 +8,7 @@
     </transition>
     <!-- 不需要缓存的 -->
     <transition name="fadeIn">
-      <keep-alive>
-        <router-view v-if="!$route.meta.keepAlive"></router-view>
-      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
     </transition>
     <tab></tab>
   </div>
@@ -66,14 +64,10 @@ input, button {
   opacity: 0;
 }
 .fadeIn-enter-active {
-  transition: all 0.5s linear;
-  opacity: 1;
+  transition: all 0.3s linear;
 }
 .fadeIn-leave-active {
-  transition: all 0.5s linear;
+  transition: all 0.3s linear;
   opacity: 1;
-}
-.fadeIn-leave {
-  opacity: 0;
 }
 </style>

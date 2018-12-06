@@ -42,10 +42,10 @@ export default {
   methods: {
     async add () {
       // 校验书籍名称
-      // if (!this.book.bookName) {
-      //   this.$vux.toast.show('请输入书籍名称')
-      //   return
-      // }
+      if (!this.book.bookName) {
+        this.$vux.toast.show('请输入书籍名称')
+        return
+      }
       if (this.book.bookName && this.book.bookName.length > 15) {
         this.$vux.toast.show('输入名称不能超过15个字符')
         this.book.bookName = ''

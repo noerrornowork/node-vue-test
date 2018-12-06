@@ -24,6 +24,7 @@ export let removeBook = (id) => {
 }
 // 根据id获取每一本图书信息
 export let getBookById = (id) => {
+  console.log(typeof id)
   return axios.get(`/book?id=${id}`)
 }
 /**

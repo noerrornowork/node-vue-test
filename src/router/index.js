@@ -26,7 +26,7 @@ export default new Router({
       name: 'home',
       component: Home,
       meta: { // 路由元信息
-        keePAlive: true
+        keepAlive: true
       }
     },
     {

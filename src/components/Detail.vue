@@ -59,6 +59,7 @@ export default {
   },
   methods: {
     async getBook () {
+      console.log(this.bId)
       this.book = await getBookById(this.bId)
     },
     async update () {
