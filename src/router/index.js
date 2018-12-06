@@ -26,28 +26,41 @@ export default new Router({
       name: 'home',
       component: Home,
       meta: { // 路由元信息
-        keepAlive: true
+        keepAlive: true,
+        title: '首页'
       }
     },
     {
       path: '/list',
       name: 'list',
-      component: List
+      component: List,
+      meta: {
+        title: '列表页'
+      }
     },
     {
       path: '/collect',
       name: 'collect',
-      component: Collect
+      component: Collect,
+      meta: {
+        title: '购物车'
+      }
     },
     {
       path: '/add',
       name: 'add',
-      component: Add
+      component: Add,
+      meta: {
+        title: '添加也'
+      }
     },
     {
       path: '/detail/:id',
       name: 'detail',
-      component: Detail
+      component: Detail,
+      meta: {
+        title: '详情页'
+      }
     },
     {
       path: '*',

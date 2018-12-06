@@ -6,7 +6,7 @@
       <template v-else>
         <ul>
           <router-link :to="{name:'detail', params: {id: book._id}}" v-for="(book, index) in allBooks" :key="index" tag="li">
-            <img :src="book.bookCover" alt="xxxkkkkkkkk">
+            <img v-lazy="book.bookCover" alt="xxxkkkkkkkk">
             <div>
               <h4>{{ book.bookName }}</h4>
               <p>{{ book.bookInfo }}</p>
